@@ -356,7 +356,7 @@ jobs:
 
   create-release:
     runs-on: macos-12
-    needs: [tests]
+    needs: [merge-xcframework]
 
     steps:
       - name: Checkout
