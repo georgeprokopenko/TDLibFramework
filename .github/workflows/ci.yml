@@ -32,7 +32,6 @@ jobs:
         run: |
           cd td 
           git apply ../builder/tdlib-patches/build-openssl.patch
-          git apply ../builder/tdlib-patches/build-arm64.patch
 
       - name: Cache Openssl
         id: cache-openssl
@@ -68,6 +67,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+
+      - name: Patch for arm64
+        run: |
+          cd td 
+          git apply ../builder/tdlib-patches/build-arm64.patch
 
       - name: Patch Build script
         run: cp builder/tdlib-patches/build.sh td/example/ios
@@ -162,6 +166,11 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Patch for arm64
+        run: |
+          cd td 
+          git apply ../builder/tdlib-patches/build-arm64.patch
+          
       - name: Patch Build script
         run: cp builder/tdlib-patches/build.sh td/example/ios
 
@@ -354,6 +363,9 @@ jobs:
       - name: Run Tests for ${{ matrix.platform }}
         run: ./scripts/test.sh ${{ matrix.platform }} || ./scripts/test.sh ${{ matrix.platform }}
 
+      - name: Check archs
+        run: lipo -info td/example/ios/third_party/openssl/iOS/lib/libcrypto.a
+          
   create-release:
     runs-on: macos-12
     needs: [tests]
