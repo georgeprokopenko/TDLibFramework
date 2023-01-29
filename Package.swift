@@ -6,10 +6,7 @@ import PackageDescription
 let package = Package(
     name: "TDLibFramework",
     platforms: [
-        .iOS(.v9),
-        .macOS(.v10_12),
         .watchOS(.v2), // Based on iOS 9 version
-        .tvOS(.v9) // Based on iOS 9 version
     ],
     products: [
         .library(
@@ -30,7 +27,7 @@ let package = Package(
         .binaryTarget(
             name: "TDLibFramework",
             url: "https://github.com/georgeprokopenko/TDLibFramework/releases/download/1.8.10-758ced94/TDLibFramework.zip",
-            checksum: "91617934c2dbe93f4600ecd338d4984a39539cfd680c23e4629f7df4946594ae"
+            checksum: "67bf2455db125896c1ec9cf5e9b762139670f89d3f2959c78237aaebe4157bea"
         )
     ]
 )
